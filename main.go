@@ -9,6 +9,7 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 type Movie struct {
@@ -43,7 +44,7 @@ type Search struct {
 	Search []Movie `json:"search"`
 }
 
-// func init() {
+func init() {
 
 // 	err := godotenv.Load(".env")
 
