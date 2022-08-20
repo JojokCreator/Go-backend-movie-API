@@ -57,7 +57,7 @@ type Search struct {
 }
 
 func main() {
-	port := goDotEnvVariable("PORT")
+	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080" // Default port if not specified
 	}
