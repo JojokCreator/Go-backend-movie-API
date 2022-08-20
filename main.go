@@ -60,7 +60,7 @@ func main() {
 	router := gin.Default()
 	router.GET("/movies", getMovies)
 	router.GET("/movie", getMovie)
-	router.Run("localhost:8080")
+	router.Run()
 
 }
 func getMovies(c *gin.Context) {
