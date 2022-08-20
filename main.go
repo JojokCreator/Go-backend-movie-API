@@ -57,10 +57,14 @@ type Search struct {
 }
 
 func main() {
+	port := goDotEnvVariable("PORT")
+	if port == "" {
+		port = "8080" // Default port if not specified
+	}
 	router := gin.Default()
 	router.GET("/movies", getMovies)
 	router.GET("/movie", getMovie)
-	router.Run()
+	router.Run(":" + port)
 
 }
 func getMovies(c *gin.Context) {
