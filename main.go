@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -97,9 +98,9 @@ func getMovie(c *gin.Context) {
 		return
 	}
 
-	dotenv := os.Getenv("API_KEY")
+	apikey := os.Getenv("API_KEY")
 
-	response, err := http.Get(fmt.Sprintf("https://www.omdbapi.com/?apikey=%s=%s", dotenv, search))
+	response, err := http.Get(fmt.Sprintf("https://www.omdbapi.com/?apikey=%s=%s", apikey, search))
 	if err != nil {
 		fmt.Print(err.Error())
 		os.Exit(1)
