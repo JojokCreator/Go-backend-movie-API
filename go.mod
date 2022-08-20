@@ -1,6 +1,7 @@
 module example/go-api
 
-go 1.19
+// +heroku goVersion go1.15
+go 1.15
 
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
