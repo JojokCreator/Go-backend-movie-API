@@ -100,7 +100,7 @@ func getMovie(c *gin.Context) {
 
 	dotenv := os.Getenv("API_KEY")
 
-	response, err := http.Get(fmt.Sprintf("https://www.omdbapi.com/?apikey=%s&s=%s", dotenv, search))
+	response, err := http.Get(fmt.Sprintf("https://www.omdbapi.com/?apikey=%s=%s", dotenv, search))
 	if err != nil {
 		fmt.Print(err.Error())
 		os.Exit(1)
