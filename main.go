@@ -12,18 +12,6 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func goDotEnvVariable(key string) string {
-
-	// load .env file
-	err := godotenv.Load(".env")
-
-	if err != nil {
-		log.Fatalf("Error loading .env file")
-	}
-
-	return os.Getenv(key)
-}
-
 type Movie struct {
 	Title    string `json:"Title"`
 	Year     string `json:"Year"`
@@ -56,6 +44,15 @@ type Search struct {
 	Search []Movie `json:"search"`
 }
 
+func init() {
+
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+}
+
 func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -75,7 +72,7 @@ func getMovies(c *gin.Context) {
 		return
 	}
 
-	dotenv := goDotEnvVariable("API_KEY")
+	dotenv := os.Getenv("API_KEY")
 
 	response, err := http.Get(fmt.Sprintf("https://www.omdbapi.com/?apikey=%s&s=%s", dotenv, search))
 	if err != nil {
@@ -102,7 +99,7 @@ func getMovie(c *gin.Context) {
 		return
 	}
 
-	dotenv := goDotEnvVariable("API_KEY")
+	dotenv := os.Getenv("API_KEY")
 
 	response, err := http.Get(fmt.Sprintf("https://www.omdbapi.com/?apikey=%s=%s", dotenv, search))
 	if err != nil {
