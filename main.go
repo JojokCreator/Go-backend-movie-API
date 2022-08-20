@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -66,8 +67,11 @@ func main() {
 		port = "8080" // Default port if not specified
 	}
 	router := gin.Default()
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"http://localhost:3000"}
 	router.GET("/movies", getMovies)
 	router.GET("/movie", getMovie)
+	router.Use(cors.New(config))
 	router.Run(":" + port)
 
 }
