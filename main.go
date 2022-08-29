@@ -10,6 +10,7 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 type Movies struct {
@@ -52,14 +53,14 @@ type Search struct {
 	Search []Movies `json:"search"`
 }
 
-// func init() {
+func init() {
 
-// 	err := godotenv.Load(".env")
+	err := godotenv.Load(".env")
 
-// 	if err != nil {
-// 		log.Fatal("Error loading .env file")
-// 	}
-// }
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+}
 
 func main() {
 	port := os.Getenv("PORT")
@@ -128,3 +129,5 @@ func getMovie(c *gin.Context) {
 
 	c.JSON(http.StatusOK, responseObject)
 }
+
+//env
