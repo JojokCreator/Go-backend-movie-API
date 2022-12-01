@@ -69,7 +69,7 @@ func main() {
 	}
 	router := gin.Default()
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"https://react-moviemadness.netlify.app"}
+	config.AllowOrigins = []string{"https://react-moviemadness.netlify.app", "https://movies.jklakus.live/"}
 	router.Use(cors.New(config))
 	router.GET("/movies", getMovies)
 	router.GET("/movie", getMovie)
